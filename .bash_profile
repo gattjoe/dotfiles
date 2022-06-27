@@ -7,6 +7,12 @@ export NVM_DIR="$HOME/.nvm"
 
 # OSX specific config {{{
 if [ $(uname) == "Darwin" ]; then
+  
+  # arm64 brew location
+  if [ $(uname -m) == "arm64" ]; then
+    eval $(/opt/homebrew/bin/brew shellenv)
+  fi
+
   export TERM=xterm-256color
   export BASH_SILENCE_DEPRECATION_WARNING=1
   export PATH="/usr/local/bin:$PATH"
@@ -19,7 +25,7 @@ if [ $(uname) == "Darwin" ]; then
   alias la='ls -alG'
   alias config='/opt/homebrew/bin/git --git-dir=$HOME/.mydotfiles/ --work-tree=$HOME'
 
-  eval $(/opt/homebrew/bin/brew shellenv)
+  #eval $(/opt/homebrew/bin/brew shellenv)
   eval "$(starship init bash)"
 
   # SSH with YubiKey
