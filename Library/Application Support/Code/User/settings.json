@@ -33,13 +33,17 @@
     "python.showStartPage": false,
     "[python]": {
         "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {"source.organizeImports": true},
+        "editor.codeActionsOnSave": {"source.organizeImports": true}
     },
     "workbench.editor.untitled.hint": "hidden",
     "remote.SSH.showLoginTerminal": true,
     "remote.SSH.useLocalServer": false,
     "terminal.integrated.defaultProfile.linux": "bash",
-    "terminal.integrated.defaultProfile.osx": "bash"
+    "terminal.integrated.defaultProfile.osx": "bash",
+    "remote.SSH.remotePlatform": {
+        "obiwan": "linux"
+    },
+    "diffEditor.codeLens": true
 
 
 }
