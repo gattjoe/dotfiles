@@ -1,0 +1,11 @@
+[user]
+	email = gattjoe@users.noreply.github.com
+	name = gattjoe
+[core]
+	excludesfile = /Users/joe/.gitignore_global
+[commit]
+	template = /Users/joe/.stCommitMsg
+[init]
+	defaultBranch = main
+[rebase]
+  	autosquash = true
