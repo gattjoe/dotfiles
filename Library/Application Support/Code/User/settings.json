@@ -3,6 +3,7 @@
     "editor.minimap.enabled": false,
     "workbench.iconTheme": "vscode-icons",
     "editor.suggestSelection": "first",
+    "editor.wordWrap": "on",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.fontSize": 16,
     "workbench.startupEditor": "newUntitledFile",
