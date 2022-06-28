@@ -1,5 +1,12 @@
 # .bash_profile
 
+#Global options {{{
+export SHELL_SESSION_HISTORY=0
+export HISTCONTROL=ignoredups:ignorespace
+shopt -s checkwinsize
+
+# }}}
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
