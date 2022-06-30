@@ -1,22 +1,20 @@
 {
     "telemetry.telemetryLevel": "off",
+    "docker.showStartPage": false,
+    "editor.fontSize": 16,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
     "editor.minimap.enabled": false,
-    "workbench.iconTheme": "vscode-icons",
     "editor.suggestSelection": "first",
     "editor.wordWrap": "on",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "editor.fontSize": 16,
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
-    },
-    "git.autofetch": true,
-    "git.confirmSync": false,
-    "vsicons.dontShowNewVersionMessage": true,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "json.format.enable": true,
+    "vsicons.dontShowNewVersionMessage": true,
     "window.zoomLevel": 2,
-    "docker.showStartPage": false,
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
@@ -34,9 +32,11 @@
     "python.showStartPage": false,
     "[python]": {
         "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {"source.organizeImports": true}
+        "editor.formatOnSaveMode": "file",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
     },
-    "workbench.editor.untitled.hint": "hidden",
     "remote.SSH.showLoginTerminal": true,
     "remote.SSH.useLocalServer": false,
     "terminal.integrated.defaultProfile.linux": "bash",
@@ -44,7 +44,11 @@
     "remote.SSH.remotePlatform": {
         "obiwan": "linux"
     },
-    "diffEditor.codeLens": true
-
-
+    "diffEditor.codeLens": true,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.startupEditor": "newUntitledFile",
 }
