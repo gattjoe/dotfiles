@@ -5,6 +5,11 @@ export SHELL_SESSION_HISTORY=0
 export HISTCONTROL=ignoredups:ignorespace
 shopt -s checkwinsize
 
+#global aliases
+alias ls='ls -G'
+alias ll='ls -ltrG'
+alias la='ls -alG'
+
 # }}}
 
 # NVM
@@ -27,9 +32,6 @@ if [ $(uname) == "Darwin" ]; then
   export PATH="$PATH:$HOME/.local/bin"
 
   #aliases {{{
-  alias ls='ls -G'
-  alias ll='ls -ltrG'
-  alias la='ls -alG'
   alias config='/opt/homebrew/bin/git --git-dir=$HOME/.mydotfiles/ --work-tree=$HOME'
 
   #eval $(/opt/homebrew/bin/brew shellenv)
