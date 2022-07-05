@@ -4,6 +4,9 @@
 export SHELL_SESSION_HISTORY=0
 export HISTCONTROL=ignoredups:ignorespace
 shopt -s checkwinsize
+shopt -s histappend
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 #global aliases
 alias ls='ls -G'
@@ -42,5 +45,23 @@ if [ $(uname) == "Darwin" ]; then
   export SSH_AUTH_SOCK="~/.ssh/agent"
   eval $(ssh-agent) > /dev/null
  
+  # }}}
+fi
+
+# Linux specific config {{{
+if [ $(uname) == "Linux" ]; then
+  shopt -s autocd
+  [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+  # enable color support of ls 
+  if [ -x /usr/bin/dircolors ]; then
+      test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+      alias ls='ls --color=auto'
+      alias dir='dir --color=auto'
+      alias grep='grep --color=auto'
+      alias fgrep='fgrep --color=auto'
+      alias egrep='egrep --color=auto'
+  fi
+
   # }}}
 fi
