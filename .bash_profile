@@ -1,5 +1,14 @@
 # .bash_profile
 
+# Claude OTEL
+export CLAUDE_CODE_ENABLE_TELEMETRY=1
+export OTEL_EXPORTER_OTLP_ENDPOINT=https://otel.echobase.network
+export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+export OTEL_LOGS_EXPORTER=otlp
+export OTEL_LOG_USER_PROMPTS=1
+export OTEL_METRICS_EXPORTER=otlp
+export OTEL_SERVICE_NAME=claude-code
+
 #Global options {{{
 export SHELL_SESSION_HISTORY=0
 export HISTCONTROL=ignoredups:ignorespace
@@ -22,29 +31,25 @@ export NVM_DIR="$HOME/.nvm"
 
 # OSX specific config {{{
 if [ $(uname) == "Darwin" ]; then
-  
+
   # arm64 brew location
   if [ $(uname -m) == "arm64" ]; then
-    eval $(/opt/homebrew/bin/brew shellenv)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
-  export TERM=xterm-256color
   export BASH_SILENCE_DEPRECATION_WARNING=1
   export PATH="/usr/local/bin:$PATH"
   # Created by `pipx`
-  export PATH="$PATH:$HOME/.local/bin"
+  #export PATH="$PATH:$HOME/.local/bin"
 
   #aliases {{{
-  alias config='/opt/homebrew/bin/git --git-dir=$HOME/.mydotfiles/ --work-tree=$HOME'
-
-  #eval $(/opt/homebrew/bin/brew shellenv)
-  eval "$(starship init bash)"
+  #alias config='/opt/homebrew/bin/git --git-dir=$HOME/.mydotfiles/ --work-tree=$HOME'
 
   # SSH with YubiKey
   # https://aditsachde.com/posts/yubikey-ssh/
-  export SSH_AUTH_SOCK="~/.ssh/agent"
+  export SSH_AUTH_SOCK="$HOME/.ssh/agent"
   eval $(ssh-agent) > /dev/null
- 
+
   # }}}
 fi
 
@@ -53,7 +58,7 @@ if [ $(uname) == "Linux" ]; then
   shopt -s autocd
   [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-  # enable color support of ls 
+  # enable color support of ls
   if [ -x /usr/bin/dircolors ]; then
       test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
       alias ls='ls --color=auto'
