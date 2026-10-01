@@ -1,0 +1,9 @@
+[build]
+rosetta = false
+
+
+[container]
+cpus = 4
+memory = "4g"
+
+
