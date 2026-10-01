@@ -1,0 +1,89 @@
+{
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "OTEL_EXPORTER_OTLP_ENDPOINT": "https://otel.echobase.network",
+    "OTEL_EXPORTER_OTLP_PROTOCOL": "http/protobuf",
+    "OTEL_LOGS_EXPORTER": "otlp",
+    "OTEL_METRICS_EXPORTER": "otlp",
+    "OTEL_SERVICE_NAME": "claude-code",
+    "OTEL_LOG_USER_PROMPTS": "1",
+    "OTEL_LOG_TOOL_CONTENT": "1"
+  },
+  "model": "sonnet",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/session_store_sync.py register 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/session_store_sync.py sync 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/session_store_sync.py sync 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"/Users/joegatt/.claude/statusline.sh\""
+  },
+  "enabledPlugins": {
+    "audit-context-building@trailofbits": true,
+    "frontend-design@claude-plugins-official": true,
+    "differential-review@trailofbits": true,
+    "seatbelt-sandboxer@trailofbits": true,
+    "supply-chain-risk-auditor@trailofbits": true,
+    "warp@claude-code-warp": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "trailofbits": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/trailofbits/skills.git"
+      }
+    },
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowLocalBinding": true
+    }
+  },
+  "effortLevel": "high",
+  "theme": "light",
+  "verbose": true
+}

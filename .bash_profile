@@ -14,8 +14,8 @@ export SHELL_SESSION_HISTORY=0
 export HISTCONTROL=ignoredups:ignorespace
 shopt -s checkwinsize
 shopt -s histappend
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 #global aliases
 alias ls='ls -G'
@@ -24,37 +24,33 @@ alias la='ls -alG'
 
 # }}}
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # OSX specific config {{{
-if [ $(uname) == "Darwin" ]; then
+if [ "$(uname)" = "Darwin" ]; then
 
   # arm64 brew location
-  if [ $(uname -m) == "arm64" ]; then
+  if [ "$(uname -m)" = "arm64" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
   export BASH_SILENCE_DEPRECATION_WARNING=1
-  export PATH="/usr/local/bin:$PATH"
-  # Created by `pipx`
-  #export PATH="$PATH:$HOME/.local/bin"
-
-  #aliases {{{
-  #alias config='/opt/homebrew/bin/git --git-dir=$HOME/.mydotfiles/ --work-tree=$HOME'
 
   # SSH with YubiKey
-  # https://aditsachde.com/posts/yubikey-ssh/
   export SSH_AUTH_SOCK="$HOME/.ssh/agent"
-  eval $(ssh-agent) > /dev/null
 
   # }}}
 fi
 
+# NVM (after brew so nvm's node wins on PATH)
+# ponytail: default node goes on PATH directly; nvm.sh only loads on first `nvm` call.
+# Breaks if alias/default isn't a plain version like "22" (e.g. "lts/*"); then run `nvm use`.
+export NVM_DIR="$HOME/.nvm"
+_nv=$(ls -d "$NVM_DIR/versions/node/v$(<"$NVM_DIR/alias/default")."* 2>/dev/null | sort -V | tail -1)
+[ -n "$_nv" ] && PATH="$_nv/bin:$PATH"
+unset _nv
+nvm() { unset -f nvm; \. "$NVM_DIR/nvm.sh"; \. "$NVM_DIR/bash_completion"; nvm "$@"; }
+
 # Linux specific config {{{
-if [ $(uname) == "Linux" ]; then
+if [ "$(uname)" = "Linux" ]; then
   shopt -s autocd
   [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
