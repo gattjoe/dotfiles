@@ -36,9 +36,14 @@ if [ "$(uname)" = "Darwin" ]; then
 
   # SSH with YubiKey
   export SSH_AUTH_SOCK="$HOME/.ssh/agent"
+  # ponytail: ~/.ssh/agent is a dir here, so the launchd socket can't bind; start a per-shell agent if none answers.
+  ssh-add -l >/dev/null 2>&1; [ $? = 2 ] && eval "$(ssh-agent)" >/dev/null
 
   # }}}
 fi
+
+# bash skips ~/.profile when .bash_profile exists; claude/uv live here
+export PATH="$HOME/.local/bin:$PATH"
 
 # NVM (after brew so nvm's node wins on PATH)
 # ponytail: default node goes on PATH directly; nvm.sh only loads on first `nvm` call.
