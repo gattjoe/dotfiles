@@ -53,9 +53,7 @@
     "audit-context-building@trailofbits": true,
     "frontend-design@claude-plugins-official": true,
     "differential-review@trailofbits": true,
-    "seatbelt-sandboxer@trailofbits": true,
     "supply-chain-risk-auditor@trailofbits": true,
-    "warp@claude-code-warp": true,
     "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
@@ -63,12 +61,6 @@
       "source": {
         "source": "git",
         "url": "https://github.com/trailofbits/skills.git"
-      }
-    },
-    "claude-code-warp": {
-      "source": {
-        "source": "github",
-        "repo": "warpdotdev/claude-code-warp"
       }
     },
     "ponytail": {
@@ -80,6 +72,9 @@
   },
   "permissions": {
     "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
       "Bash(kubectl get:*)",
       "Bash(kubectl describe:*)",
       "Bash(kubectl logs:*)",
