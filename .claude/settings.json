@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
     "OTEL_EXPORTER_OTLP_ENDPOINT": "https://otel.echobase.network",
@@ -7,7 +8,9 @@
     "OTEL_METRICS_EXPORTER": "otlp",
     "OTEL_SERVICE_NAME": "claude-code",
     "OTEL_LOG_USER_PROMPTS": "1",
-    "OTEL_LOG_TOOL_CONTENT": "1"
+    "OTEL_LOG_TOOL_CONTENT": "1",
+    "NO_PROXY": "localhost,127.0.0.1",
+    "no_proxy": "localhost,127.0.0.1"
   },
   "model": "sonnet",
   "hooks": {
@@ -16,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.claude/hooks/session_store_sync.py register 2>/dev/null || true"
+            "command": "python3 ~/.claude/hooks/session_store_sync.py register 2>>~/.claude/session_store_sync.log || true"
           }
         ]
       }
@@ -26,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.claude/hooks/session_store_sync.py sync 2>/dev/null || true"
+            "command": "python3 ~/.claude/hooks/session_store_sync.py sync 2>>~/.claude/session_store_sync.log || true"
           }
         ]
       }
@@ -36,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.claude/hooks/session_store_sync.py sync 2>/dev/null || true"
+            "command": "python3 ~/.claude/hooks/session_store_sync.py sync 2>>~/.claude/session_store_sync.log || true"
           }
         ]
       }
@@ -44,7 +47,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bash \"/Users/joegatt/.claude/statusline.sh\""
+    "command": "bash ~/.claude/statusline.sh"
   },
   "enabledPlugins": {
     "audit-context-building@trailofbits": true,
@@ -75,12 +78,54 @@
       }
     }
   },
+  "permissions": {
+    "allow": [
+      "Bash(kubectl get:*)",
+      "Bash(kubectl describe:*)",
+      "Bash(kubectl logs:*)",
+      "Bash(kubectl top:*)",
+      "Bash(kubectl version:*)",
+      "Bash(kubectl rollout status:*)",
+      "Bash(kubectl config get-contexts:*)",
+      "Bash(kubectl config current-context:*)"
+    ],
+    "ask": [
+      "Bash(kubectl get secret:*)",
+      "Bash(kubectl apply:*)",
+      "Bash(kubectl delete:*)",
+      "Bash(kubectl patch:*)",
+      "Bash(kubectl edit:*)",
+      "Bash(kubectl replace:*)",
+      "Bash(kubectl scale:*)",
+      "Bash(kubectl rollout restart:*)",
+      "Bash(kubectl rollout undo:*)",
+      "Bash(kubectl exec:*)",
+      "Bash(kubectl drain:*)",
+      "Bash(kubectl cordon:*)",
+      "Bash(kubectl taint:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.azure/**)",
+      "Read(~/.gnupg/**)"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
+    "enableWeakerNetworkIsolation": true,
     "network": {
-      "allowLocalBinding": true
+      "allowLocalBinding": true,
+      "allowedDomains": ["api.github.com", "registry.npmjs.org", "192.168.3.2", "192.168.3.9", "192.168.3.5"]
+    },
+    "filesystem": {
+      "denyRead": ["~/.ssh", "~/.aws", "~/.azure", "~/.gnupg"],
+      "allowWrite": ["~/.kube/cache"]
     }
   },
   "effortLevel": "high",
