@@ -9,6 +9,7 @@
     "OTEL_SERVICE_NAME": "claude-code",
     "OTEL_LOG_USER_PROMPTS": "1",
     "OTEL_LOG_TOOL_CONTENT": "1",
+    "OTEL_TRACES_EXPORTER": "otlp",
     "NO_PROXY": "localhost,127.0.0.1",
     "no_proxy": "localhost,127.0.0.1"
   },
