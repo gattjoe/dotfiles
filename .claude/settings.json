@@ -120,7 +120,7 @@
     },
     "filesystem": {
       "denyRead": ["~/.ssh", "~/.aws", "~/.azure", "~/.gnupg"],
-      "allowWrite": ["~/.kube/cache"]
+      "allowWrite": ["~/.kube/cache", "~/.cache/gh"]
     }
   },
   "effortLevel": "high",
