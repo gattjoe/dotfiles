@@ -45,9 +45,6 @@ fi
 # bash skips ~/.profile when .bash_profile exists; claude/uv live here
 export PATH="$HOME/.local/bin:$PATH"
 
-# sandbox adds 192.168.0.0/16 to NO_PROXY, so kubectl dials the LAN directly and Seatbelt denies it; force it through the proxy (allowedDomains)
-kubectl() { NO_PROXY=localhost,127.0.0.1 no_proxy=localhost,127.0.0.1 command kubectl "$@"; }
-
 # Linux specific config {{{
 if [ "$(uname)" = "Linux" ]; then
   shopt -s autocd

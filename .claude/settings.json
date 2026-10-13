@@ -117,7 +117,7 @@
     "enableWeakerNetworkIsolation": true,
     "network": {
       "allowLocalBinding": true,
-      "allowedDomains": ["api.github.com", "registry.npmjs.org", "192.168.3.2", "192.168.3.9", "192.168.3.5"]
+      "allowedDomains": ["api.github.com", "registry.npmjs.org", "kenobi.echobase.network", "maul.echobase.network", "vader.echobase.network"]
     },
     "filesystem": {
       "denyRead": ["~/.ssh", "~/.aws", "~/.azure", "~/.gnupg"],
