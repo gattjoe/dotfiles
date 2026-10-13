@@ -45,14 +45,8 @@ fi
 # bash skips ~/.profile when .bash_profile exists; claude/uv live here
 export PATH="$HOME/.local/bin:$PATH"
 
-# NVM (after brew so nvm's node wins on PATH)
-# ponytail: default node goes on PATH directly; nvm.sh only loads on first `nvm` call.
-# Breaks if alias/default isn't a plain version like "22" (e.g. "lts/*"); then run `nvm use`.
-export NVM_DIR="$HOME/.nvm"
-_nv=$(ls -d "$NVM_DIR/versions/node/v$(<"$NVM_DIR/alias/default")."* 2>/dev/null | sort -V | tail -1)
-[ -n "$_nv" ] && PATH="$_nv/bin:$PATH"
-unset _nv
-nvm() { unset -f nvm; \. "$NVM_DIR/nvm.sh"; \. "$NVM_DIR/bash_completion"; nvm "$@"; }
+# sandbox adds 192.168.0.0/16 to NO_PROXY, so kubectl dials the LAN directly and Seatbelt denies it; force it through the proxy (allowedDomains)
+kubectl() { NO_PROXY=localhost,127.0.0.1 no_proxy=localhost,127.0.0.1 command kubectl "$@"; }
 
 # Linux specific config {{{
 if [ "$(uname)" = "Linux" ]; then
