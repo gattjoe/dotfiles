@@ -21,7 +21,7 @@ import sys
 import urllib.error
 import urllib.request
 
-TOKEN_FILE = os.path.expanduser("~/.claude/session-store-token")
+TOKEN_FILE = os.environ.get("SESSION_STORE_TOKEN_FILE") or os.path.expanduser("~/.claude/session-store-token")
 DEFAULT_URL = "https://sessions.echobase.network"
 
 
