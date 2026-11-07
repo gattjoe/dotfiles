@@ -85,7 +85,12 @@
       "Bash(kubectl version:*)",
       "Bash(kubectl rollout status:*)",
       "Bash(kubectl config get-contexts:*)",
-      "Bash(kubectl config current-context:*)"
+      "Bash(kubectl config current-context:*)",
+      "Bash(npm view:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm explain:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm install --package-lock-only --ignore-scripts)"]
     ],
     "ask": [
       "Bash(kubectl get secret:*)",
@@ -100,7 +105,12 @@
       "Bash(kubectl exec:*)",
       "Bash(kubectl drain:*)",
       "Bash(kubectl cordon:*)",
-      "Bash(kubectl taint:*)"
+      "Bash(kubectl taint:*)",
+      "Bash(npm install:*)",
+      "Bash(npm ci:*)",
+      "Bash(npm run:*)",
+      "Bash(npm exec:*)",
+      "Bash(npx:*)"
     ],
     "deny": [
       "Read(./.env)",
@@ -108,7 +118,11 @@
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
       "Read(~/.azure/**)",
-      "Read(~/.gnupg/**)"
+      "Read(~/.gnupg/**)",
+      "Bash(npm publish:*)",
+      "Bash(npm config:*)",
+      "Bash(npm login:*)",
+      "Bash(npm token:*)"]
     ],
     "disableBypassPermissionsMode": "disable"
   },
