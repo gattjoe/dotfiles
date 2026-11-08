@@ -90,7 +90,7 @@
       "Bash(npm ls:*)",
       "Bash(npm explain:*)",
       "Bash(npm audit:*)",
-      "Bash(npm install --package-lock-only --ignore-scripts)"]
+      "Bash(npm install --package-lock-only --ignore-scripts)"
     ],
     "ask": [
       "Bash(kubectl get secret:*)",
@@ -122,7 +122,7 @@
       "Bash(npm publish:*)",
       "Bash(npm config:*)",
       "Bash(npm login:*)",
-      "Bash(npm token:*)"]
+      "Bash(npm token:*)"
     ],
     "disableBypassPermissionsMode": "disable"
   },
